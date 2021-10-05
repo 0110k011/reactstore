@@ -10,21 +10,24 @@ const Products = ({ productToCart }) => {
     const classes = useStyles();
     products.sort((a, b) => (a.name > b.name) ? 1 : -1);
     const [ order, setOrder] = useState(products);
+    const [ selOrder, setSelOrder] = useState(0);
 
-    const myOrder = () => {
-        var x = document.getElementById("mySelect").value;
+    const myOrder = (x) => {
         switch (x) {
-            case 'name':
+            case "0":
                 products.sort((a, b) => (a.name > b.name) ? 1 : -1); 
                 setOrder([].concat(products));
+                setSelOrder(0);
                 break;
-            case 'score':
+            case "1":
                 products.sort((a, b) => (a.score < b.score) ? 1 : -1); 
                 setOrder([].concat(products));
+                setSelOrder(1);
                 break;
-            case 'price':
+            case "2":
                 products.sort((a, b) => (a.price > b.price) ? 1 : -1); 
                 setOrder([].concat(products));
+                setSelOrder(2);
                 break
             default:
                 setOrder([]);
@@ -35,11 +38,11 @@ const Products = ({ productToCart }) => {
         <main className={classes.content}>
             <div className={classes.toolbar} />
             <Grid container justify="flex-end" spacing={1}>
-                <i>Ordenar por: </i>
-                <select id="mySelect" onChange={() => myOrder()}>
-                    <option value="name">Nome</option>
-                    <option value="price">Menor preço</option>
-                    <option value="score">Relevância</option>
+                <i>Ordenar por:</i>
+                <select name="mySelect" value={selOrder} onChange={orderVal => myOrder(orderVal.target.value)}>
+                    <option value="0">Nome</option>
+                    <option value="1">Relevância</option>
+                    <option value="2">Menor Preço</option>
                 </select>
             </Grid>
             <br />
