@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import Product from './Product/Product';
 import useStyles from './styles';
 
-import products from '../../products.json';
+import products from '../../data/products.json';
 
 const Products = ({ productToCart }) => {
     const classes = useStyles();
@@ -41,7 +41,7 @@ const Products = ({ productToCart }) => {
                 <i>Ordenar por:</i>
                 <select name="mySelect" value={selOrder} onChange={orderVal => myOrder(orderVal.target.value)}>
                     <option value="0">Nome</option>
-                    <option value="1">Relevância</option>
+                    <option value="1">Popularidade</option>
                     <option value="2">Menor Preço</option>
                 </select>
             </Grid>
